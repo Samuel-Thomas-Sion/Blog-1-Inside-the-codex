@@ -1,543 +1,816 @@
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Inside The Codex — Entry #001</title>
+<!-- REPLACE ONLY THE MAIN CONTENT INSIDE <div class="wrapper"> -->
+<!-- KEEP YOUR EXISTING CSS + PARTICLE SYSTEM -->
+<script>
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+const codexStyles = `
+
+:root{
+    --bg:#05070d;
+    --panel:#0c111d;
+    --panel2:#12192a;
+    --line:#1d2b46;
+    --accent:#4fc3ff;
+    --accent2:#ff5c8a;
+    --text:#e8f0ff;
+    --muted:#9fb2d1;
+    --glow:0 0 15px rgba(79,195,255,.4);
 }
 
-html{
-scroll-behavior:smooth;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-font-family:Arial,sans-serif;
-background:
-radial-gradient(circle at top left, rgba(0,191,255,0.08), transparent 22%),
-radial-gradient(circle at bottom right, rgba(255,0,120,0.08), transparent 25%),
-linear-gradient(180deg,#030711,#08111c,#05070d);
-color:#dfefff;
-overflow-x:hidden;
-line-height:1.8;
+    background:
+        radial-gradient(circle at top left, rgba(79,195,255,.15), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(255,92,138,.12), transparent 25%),
+        var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
 }
 
-/* PARTICLE SYSTEM */
+/* GRID */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size:50px 50px;
+    animation:gridMove 20s linear infinite;
+    z-index:-2;
+}
+
+@keyframes gridMove{
+    from{
+        transform:translateY(0px);
+    }
+    to{
+        transform:translateY(50px);
+    }
+}
+
+/* PARTICLES */
+
 .particle{
-position:fixed;
-width:4px;
-height:4px;
-background:rgba(0,191,255,0.45);
-border-radius:50%;
-pointer-events:none;
-animation:floatParticle linear infinite;
+    position:fixed;
+    width:3px;
+    height:3px;
+    background:rgba(79,195,255,.6);
+    border-radius:50%;
+    animation:float 12s linear infinite;
+    z-index:-1;
 }
 
-@keyframes floatParticle{
-0%{
-transform:translateY(100vh) scale(0.5);
-opacity:0;
+@keyframes float{
+    from{
+        transform:translateY(100vh) translateX(0px);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    to{
+        transform:translateY(-10vh) translateX(60px);
+        opacity:0;
+    }
 }
-10%{
-opacity:1;
-}
-90%{
-opacity:1;
-}
-100%{
-transform:translateY(-20vh) scale(1.2);
-opacity:0;
-}
+
+.wrapper{
+    width:min(1100px,92%);
+    margin:auto;
+    padding:60px 0 120px;
 }
 
 /* HERO */
+
 .hero{
-position:relative;
-padding:120px 24px 100px;
-text-align:center;
-overflow:hidden;
+    position:relative;
+    border:1px solid rgba(79,195,255,.25);
+    background:linear-gradient(145deg, rgba(12,17,29,.9), rgba(5,7,13,.95));
+    padding:60px;
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:
+        0 0 40px rgba(79,195,255,.08),
+        inset 0 0 50px rgba(79,195,255,.04);
 }
 
 .hero::before{
-content:'';
-position:absolute;
-inset:0;
-background:
-radial-gradient(circle at center, rgba(0,191,255,0.12), transparent 50%);
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(120deg, transparent 0%, rgba(79,195,255,.08) 50%, transparent 100%);
+    transform:translateX(-100%);
+    animation:scan 8s linear infinite;
 }
 
-.hero h1{
-position:relative;
-font-size:clamp(34px,6vw,72px);
-letter-spacing:3px;
-font-weight:900;
-color:#8eeaff;
-text-shadow:
-0 0 14px rgba(0,191,255,0.9),
-0 0 40px rgba(0,191,255,0.35);
-margin-bottom:24px;
+@keyframes scan{
+    to{
+        transform:translateX(100%);
+    }
 }
 
-.hero p{
-position:relative;
-max-width:900px;
-margin:auto;
-font-size:18px;
-color:#bdd8e8;
+.top-tag{
+    display:inline-block;
+    padding:10px 18px;
+    border:1px solid rgba(79,195,255,.35);
+    border-radius:999px;
+    color:var(--accent);
+    letter-spacing:2px;
+    font-size:.8rem;
+    margin-bottom:25px;
+    text-transform:uppercase;
+    background:rgba(79,195,255,.06);
+    backdrop-filter:blur(10px);
 }
 
-.scan-line{
-position:absolute;
-left:0;
-width:100%;
-height:2px;
-background:linear-gradient(90deg,transparent,#00bfff,transparent);
-box-shadow:0 0 18px #00bfff;
-animation:scanMove 5s linear infinite;
-opacity:0.5;
+h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(2.4rem,5vw,5rem);
+    line-height:1.1;
+    margin-bottom:18px;
+    text-transform:uppercase;
 }
 
-@keyframes scanMove{
-0%{top:-10%;}
-100%{top:110%;}
+.subtitle{
+    color:var(--muted);
+    font-size:1.1rem;
+    line-height:1.8;
+    max-width:700px;
 }
 
-/* MAIN */
-.main{
-max-width:1200px;
-margin:auto;
-padding:40px 20px 100px;
-}
+/* SECTIONS */
 
 .section{
-position:relative;
-padding:38px;
-margin-bottom:42px;
-border-radius:28px;
-overflow:hidden;
-backdrop-filter:blur(4px);
-transition:all 0.4s ease;
-border:1px solid rgba(255,255,255,0.06);
+    margin-top:60px;
+    padding:40px;
+    border-radius:24px;
+    background:linear-gradient(145deg,var(--panel),var(--panel2));
+    border:1px solid rgba(255,255,255,.05);
+    position:relative;
+    overflow:hidden;
+    transition:.4s;
 }
 
 .section:hover{
-transform:translateY(-6px) scale(1.01);
+    transform:translateY(-6px);
+    border-color:rgba(79,195,255,.25);
+    box-shadow:var(--glow);
 }
 
 .section::after{
-content:'';
-position:absolute;
-inset:0;
-pointer-events:none;
-background:linear-gradient(145deg, rgba(255,255,255,0.03), transparent 35%);
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:4px;
+    height:100%;
+    background:linear-gradient(var(--accent),var(--accent2));
 }
 
 .section-title{
-font-size:34px;
-font-weight:800;
-margin-bottom:24px;
-letter-spacing:1px;
-position:relative;
-z-index:2;
+    font-family:'Orbitron',sans-serif;
+    color:var(--accent);
+    margin-bottom:24px;
+    font-size:1.4rem;
+    letter-spacing:1px;
 }
 
-.section-content{
-position:relative;
-z-index:2;
-font-size:17px;
-color:#d8e9f3;
+.section p{
+    color:#d6e0f2;
+    line-height:1.9;
+    margin-bottom:18px;
 }
 
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:16px;
-margin:26px 0;
+/* CARDS */
+
+.list{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:16px;
+    margin-top:25px;
 }
 
 .card{
-padding:18px;
-border-radius:18px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.05);
-transition:0.3s ease;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+    padding:20px;
+    border-radius:18px;
+    transition:.35s;
+    position:relative;
+    overflow:hidden;
 }
 
 .card:hover{
-transform:translateY(-5px);
-background:rgba(255,255,255,0.08);
+    transform:scale(1.03);
+    border-color:rgba(79,195,255,.35);
+    background:rgba(79,195,255,.05);
 }
 
-/* DIFFERENT STYLES */
-.orange{
-background:
-linear-gradient(135deg,#241000,#3a1900);
-box-shadow:0 0 30px rgba(255,140,0,0.08);
-}
-.orange:hover{
-box-shadow:0 0 40px rgba(255,140,0,0.18);
-}
-.orange .section-title{
-color:#ffbf73;
-text-shadow:0 0 12px rgba(255,170,0,0.35);
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(130deg, transparent 20%, rgba(79,195,255,.08), transparent 80%);
+    transform:translateX(-100%);
+    transition:1s;
 }
 
-.cyan{
-background:
-linear-gradient(135deg,#061d22,#0d3136);
-box-shadow:0 0 30px rgba(0,255,200,0.08);
-}
-.cyan:hover{
-box-shadow:0 0 40px rgba(0,255,200,0.18);
-}
-.cyan .section-title{
-color:#79ffe3;
+.card:hover::before{
+    transform:translateX(100%);
 }
 
-.purple{
-background:
-linear-gradient(135deg,#180a26,#281041);
-box-shadow:0 0 30px rgba(180,120,255,0.08);
-}
-.purple:hover{
-box-shadow:0 0 40px rgba(180,120,255,0.18);
-}
-.purple .section-title{
-color:#d4a0ff;
+.card h3{
+    color:var(--accent);
+    margin-bottom:10px;
+    font-size:1rem;
+    font-family:'Orbitron',sans-serif;
 }
 
-.green{
-background:
-linear-gradient(135deg,#0d2110,#17351a);
-box-shadow:0 0 30px rgba(120,255,120,0.08);
-}
-.green:hover{
-box-shadow:0 0 40px rgba(120,255,120,0.18);
-}
-.green .section-title{
-color:#9dff9d;
+.card p{
+    color:var(--muted);
+    font-size:.95rem;
+    line-height:1.6;
 }
 
-.blue{
-background:
-linear-gradient(135deg,#08192d,#10314e);
-box-shadow:0 0 30px rgba(0,191,255,0.08);
-}
-.blue:hover{
-box-shadow:0 0 40px rgba(0,191,255,0.18);
-}
-.blue .section-title{
-color:#94e6ff;
-}
-
-.red{
-background:
-linear-gradient(135deg,#291111,#421919);
-box-shadow:0 0 30px rgba(255,100,100,0.08);
-}
-.red:hover{
-box-shadow:0 0 40px rgba(255,100,100,0.18);
-}
-.red .section-title{
-color:#ffb0b0;
-}
-
-.dark{
-background:
-linear-gradient(135deg,#101010,#1b1b1b);
-box-shadow:0 0 30px rgba(255,255,255,0.05);
-}
-.dark:hover{
-box-shadow:0 0 40px rgba(255,255,255,0.12);
-}
-.dark .section-title{
-color:#ffffff;
-}
+/* DIVIDER */
 
 .divider{
-height:2px;
-background:linear-gradient(90deg,transparent,rgba(0,191,255,0.75),transparent);
-margin:50px auto;
-width:90%;
-position:relative;
-overflow:hidden;
+    margin:70px 0;
+    height:2px;
+    background:linear-gradient(to right,
+    transparent,
+    rgba(79,195,255,.8),
+    rgba(255,92,138,.7),
+    transparent);
+    position:relative;
 }
 
-.divider::before{
-content:'';
-position:absolute;
-left:-20%;
-top:0;
-width:20%;
-height:100%;
-background:white;
-filter:blur(6px);
-animation:dividerPulse 4s linear infinite;
+.divider::after{
+    content:"◈";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    background:var(--bg);
+    padding:0 18px;
+    color:var(--accent);
 }
 
-@keyframes dividerPulse{
-0%{left:-20%;}
-100%{left:120%;}
+/* STATUS PANEL */
+
+.status-panel{
+    margin-top:70px;
+    background:black;
+    border:1px solid rgba(79,195,255,.2);
+    border-radius:24px;
+    padding:35px;
+    font-family:'Orbitron',sans-serif;
+    position:relative;
+    overflow:hidden;
 }
+
+.status-line{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    color:#cde5ff;
+}
+
+.status-line span:last-child{
+    color:#7CFF9F;
+    text-shadow:0 0 10px rgba(124,255,159,.7);
+}
+
+/* FOOTER */
 
 .footer{
-text-align:center;
-padding:60px 20px 90px;
+    margin-top:80px;
+    text-align:center;
+    color:var(--muted);
+    font-size:.9rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
 }
 
-.status-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:16px;
-margin-top:28px;
+.glow-text{
+    color:var(--accent);
+    text-shadow:0 0 15px rgba(79,195,255,.8);
 }
 
-.status-box{
-padding:20px;
-border-radius:20px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.06);
-transition:0.3s ease;
+/* TYPEWRITER */
+
+.typewriter{
+    overflow:hidden;
+    white-space:nowrap;
+    border-right:2px solid var(--accent);
+    width:0;
+    animation:typing 5s steps(45,end) forwards,
+              blink .8s infinite;
 }
 
-.status-box:hover{
-transform:translateY(-4px);
-box-shadow:0 0 25px rgba(0,191,255,0.15);
+@keyframes typing{
+    to{
+        width:100%;
+    }
 }
 
-.final-title{
-font-size:42px;
-font-weight:900;
-color:#8fe9ff;
-text-shadow:0 0 18px rgba(0,191,255,0.45);
-margin-top:40px;
+@keyframes blink{
+    50%{
+        border-color:transparent;
+    }
 }
+
+/* MOBILE */
 
 @media(max-width:700px){
-.section{
-padding:24px;
-}
-
-.section-title{
-font-size:26px;
-}
 
 .hero{
-padding-top:90px;
-}
-}
-</style>
-</head>
-<body>
-
-<div class="scan-line"></div>
-
-<!-- HERO -->
-<section class="hero">
-<h1>⚜️ INSIDE THE CODEX — ENTRY #001 ⚜️</h1>
-<p>
-The System Behind the Interface
-</p>
-</section>
-
-<div class="main">
-
-<div class="section orange">
-<div class="section-title">🎯 INTRA-CLUB TOURNAMENT DEVELOPMENT</div>
-<div class="section-content">
-Work has officially begun on expanding internal competitive systems inside the Codex.
-
-<div class="cards">
-<div class="card">⚔️ daily match structures</div>
-<div class="card">🎯 internal competition systems</div>
-<div class="card">🔥 future Inferno Championship operations</div>
-<div class="card">🧩 tactical challenge integration</div>
-<div class="card">📅 organized event scheduling</div>
-</div>
-
-The long-term objective is to create a competitive environment that remains active consistently instead of relying only on occasional events.
-</div>
-</div>
-
-<div class="divider"></div>
-
-<div class="section cyan">
-<div class="section-title">🏛️ COMMAND CENTRE ACTIVATION</div>
-<div class="section-content">
-The Codex Command Centre is now operational.
-
-<div class="cards">
-<div class="card">⚙️ development coordination</div>
-<div class="card">🖥️ sidebar testing</div>
-<div class="card">🧠 operational planning</div>
-<div class="card">🧪 system experimentation</div>
-<div class="card">🤝 contractor integration</div>
-<div class="card">🛠️ future module testing</div>
-</div>
-
-This acts as the internal systems division of the Codex where development and structural upgrades are organized before implementation into the main club systems.
-</div>
-</div>
-
-<div class="divider"></div>
-
-<div class="section purple">
-<div class="section-title">⚙️ DEPARTMENT SYSTEM EXPANSION</div>
-<div class="section-content">
-The Codex officially expanded into multiple operational departments this week.
-
-<div class="cards">
-<div class="card">🏛️ High Command</div>
-<div class="card">📥 Recruitment Department</div>
-<div class="card">🎮 Community Engagement Department</div>
-<div class="card">🎯 Event Organization Department</div>
-<div class="card">🖥️ Sidebar & UI Development Department</div>
-<div class="card">🤝 Public Relations & Partnerships Department</div>
-<div class="card">🛡️ Moderation & Security Department</div>
-</div>
-
-The objective behind the department system is to transform the club into a more organized and scalable structure rather than relying on one-person management.
-</div>
-</div>
-
-<div class="divider"></div>
-
-<div class="section green">
-<div class="section-title">📈 MEMBER GROWTH REPORT</div>
-<div class="section-content">
-Several new members joined the Codex this week through recruitment operations, partnerships, and public outreach systems.
-
-<div class="cards">
-<div class="card">🎯 attracting active members</div>
-<div class="card">🛡️ improving retention</div>
-<div class="card">📊 increasing activity quality instead of only raw numbers</div>
-</div>
-
-Growth remains steady as recruitment infrastructure continues improving.
-</div>
-</div>
-
-<div class="divider"></div>
-
-<div class="section blue">
-<div class="section-title">🖥️ NEW CODED DESCRIPTION SYSTEMS</div>
-<div class="section-content">
-Major work was completed on both the public and private club descriptions.
-
-<div class="cards">
-<div class="card">⚜️ advanced styled announcements</div>
-<div class="card">📡 embedded systems</div>
-<div class="card">🧠 operational UI formatting</div>
-<div class="card">🖥️ visual HUD-inspired layouts</div>
-<div class="card">📂 structured information panels</div>
-<div class="card">⚡ quick-access systems</div>
-</div>
-
-The overall objective is to create a unique visual identity for the Codex while maintaining readability and structure.
-</div>
-</div>
-
-<div class="divider"></div>
-
-<div class="section red">
-<div class="section-title">🛠️ SIDEBAR CONTRACTOR UPDATE</div>
-<div class="section-content">
-A new sidebar contractor has been brought into development operations for specialized module integration.
-
-<div class="cards">
-<div class="card">⚡ animated divider systems</div>
-<div class="card">🎵 music player integration</div>
-<div class="card">🧩 particle engine development</div>
-<div class="card">🛠️ operational module refinement</div>
-<div class="card">📡 new operatives module experimentation</div>
-</div>
-
-All additions are required to maintain the existing Codex visual identity and tactical UI atmosphere without redesigning the overall system.
-</div>
-</div>
-
-<div class="divider"></div>
-
-<div class="section dark">
-<div class="section-title">⚜️ NEXT REPORT STATUS</div>
-<div class="section-content">
-The next official Codex Report will release next Friday.
-
-<div class="cards">
-<div class="card">⚙️ operational changes</div>
-<div class="card">🎯 tournament systems</div>
-<div class="card">🤝 partnerships</div>
-<div class="card">🏗️ infrastructure updates</div>
-<div class="card">📈 activity expansion</div>
-<div class="card">🧠 development progress</div>
-</div>
-</div>
-</div>
-
-<!-- STATUS -->
-<div class="footer">
-<h2 style="font-size:38px;color:#8fe9ff;margin-bottom:24px;">🧠 SYSTEM STATUS</h2>
-
-<div class="status-grid">
-<div class="status-box">Recruitment Division — ACTIVE</div>
-<div class="status-box">Department Expansion — ACTIVE</div>
-<div class="status-box">Sidebar Development — ACTIVE</div>
-<div class="status-box">Partnership Operations — EXPANDING</div>
-<div class="status-box">Tournament Infrastructure — PREPARING</div>
-</div>
-
-<div class="final-title">⚔️ CODEX SYSTEM ONLINE ⚔️</div>
-</div>
-
-</div>
-
-<script>
-// PARTICLE ENGINE
-const particleCount = 32;
-
-for(let i=0;i<particleCount;i++){
-const particle = document.createElement('div');
-particle.classList.add('particle');
-
-particle.style.left = Math.random() * 100 + 'vw';
-particle.style.animationDuration = (8 + Math.random()*14) + 's';
-particle.style.animationDelay = Math.random() * 10 + 's';
-particle.style.opacity = Math.random();
-particle.style.width = particle.style.height = (2 + Math.random()*4) + 'px';
-
-document.body.appendChild(particle);
+    padding:35px;
 }
 
-// SECTION REVEAL ANIMATION
-const sections = document.querySelectorAll('.section');
-
-const observer = new IntersectionObserver(entries => {
-entries.forEach(entry => {
-if(entry.isIntersecting){
-entry.target.animate([
-{opacity:0, transform:'translateY(40px)'},
-{opacity:1, transform:'translateY(0px)'}
-],{
-duration:800,
-fill:'forwards',
-easing:'ease-out'
-});
+.section{
+    padding:28px;
 }
-});
-},{threshold:0.15});
 
-sections.forEach(section=>{
-section.style.opacity='0';
-observer.observe(section);
-});
+}
+
+`;
+
+const styleSheet = document.createElement("style");
+styleSheet.innerText = codexStyles;
+document.head.appendChild(styleSheet);
+
 </script>
 
-</body>
-</html>
-```
+<div class="wrapper">
+
+<div class="hero">
+
+<div class="top-tag">
+⚜️ INSIDE THE CODEX — ENTRY #001
+</div>
+
+<h1 class="typewriter">
+The System Behind The Interface
+</h1>
+
+<p class="subtitle">
+Most people who enter the Codex notice the visuals first.<br><br>
+
+The glowing panels.<br>
+The tactical layouts.<br>
+The operational atmosphere.<br>
+The system-style announcements.<br><br>
+
+But the interface was never the actual objective.<br><br>
+
+The real goal was creating something that feels alive.
+</p>
+
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+
+<h2 class="section-title">
+🧠 WHY THE CODEX LOOKS DIFFERENT
+</h2>
+
+<p>
+Most club pages are built like storage rooms.
+</p>
+
+<p>
+Information gets placed somewhere randomly:
+</p>
+
+<div class="list">
+
+<div class="card">
+<h3>LINKS</h3>
+<p>
+Placed in disconnected corners with no flow or structure.
+</p>
+</div>
+
+<div class="card">
+<h3>ANNOUNCEMENTS</h3>
+<p>
+Scattered systems with no operational hierarchy.
+</p>
+</div>
+
+<div class="card">
+<h3>IDENTITY</h3>
+<p>
+Most pages lack atmosphere, consistency, and visual discipline.
+</p>
+</div>
+
+</div>
+
+<p style="margin-top:35px;">
+The Codex was built differently.
+</p>
+
+<p>
+Instead of treating the club as a simple page, the system was designed more like a command interface.
+</p>
+
+<p>
+Every section was intended to feel connected:
+</p>
+
+<div class="list">
+
+<div class="card">
+<h3>OPERATIONAL PANELS</h3>
+<p>
+Structured sections designed to feel active and interconnected.
+</p>
+</div>
+
+<div class="card">
+<h3>DEPARTMENTS</h3>
+<p>
+Systems organized with identity and internal purpose.
+</p>
+</div>
+
+<div class="card">
+<h3>DEVELOPMENT SYSTEMS</h3>
+<p>
+Infrastructure built to evolve rather than remain static.
+</p>
+</div>
+
+<div class="card">
+<h3>ACTIVITY STRUCTURES</h3>
+<p>
+Layouts engineered to guide attention naturally.
+</p>
+</div>
+
+</div>
+
+<p class="glow-text" style="margin-top:35px;">
+The objective was consistency.<br><br>
+Not just visually.<br><br>
+Structurally.
+</p>
+
+</div>
+
+<div class="section">
+
+<h2 class="section-title">
+🖥️ THE EVOLUTION OF THE SYSTEM
+</h2>
+
+<p>
+The earliest versions of the Codex were significantly simpler.
+</p>
+
+<p>
+Basic layouts.<br>
+Minimal structure.<br>
+Almost no operational systems.
+</p>
+
+<p>
+Over time, the infrastructure expanded:
+</p>
+
+<div class="list">
+
+<div class="card">
+<h3>ADVANCED STYLING</h3>
+<p>
+Custom tactical announcement formatting and visual refinement.
+</p>
+</div>
+
+<div class="card">
+<h3>EMBEDDED SYSTEMS</h3>
+<p>
+Integrated iframe infrastructure and responsive modules.
+</p>
+</div>
+
+<div class="card">
+<h3>COMMAND OPERATIONS</h3>
+<p>
+Department systems and internal operational architecture.
+</p>
+</div>
+
+<div class="card">
+<h3>EXPERIMENTAL MODULES</h3>
+<p>
+Prototype systems tested for future deployment.
+</p>
+</div>
+
+</div>
+
+<p style="margin-top:35px;">
+Each update added another layer to the system.
+</p>
+
+<p>
+Not all experiments survived.
+</p>
+
+<p>
+Some modules were removed entirely.<br>
+Others were redesigned multiple times before integration.
+</p>
+
+<p>
+A large portion of development involved testing what Chess.com would actually allow without breaking formatting or performance.
+</p>
+
+<p class="glow-text">
+Expansion requires discipline.
+</p>
+
+</div>
+
+<div class="section">
+
+<h2 class="section-title">
+⚙️ CURRENT DEVELOPMENT PHASE
+</h2>
+
+<p>
+The Codex is currently entering an infrastructure expansion phase.
+</p>
+
+<p>
+Several systems are actively being worked on:
+</p>
+
+<div class="list">
+
+<div class="card">
+<h3>MODULE REFINEMENT</h3>
+<p>
+Operational systems are being optimized and reconstructed.
+</p>
+</div>
+
+<div class="card">
+<h3>MUSIC PLAYER</h3>
+<p>
+The iframe audio infrastructure is undergoing redevelopment.
+</p>
+</div>
+
+<div class="card">
+<h3>PARTICLE ENGINE</h3>
+<p>
+Experimental animated atmosphere systems are being tested.
+</p>
+</div>
+
+<div class="card">
+<h3>LIVE PANELS</h3>
+<p>
+Future operational systems may display active live infrastructure.
+</p>
+</div>
+
+</div>
+
+<p style="margin-top:35px;">
+The objective is not to overload the interface.
+</p>
+
+<p>
+Every addition must maintain:
+</p>
+
+<div class="list">
+
+<div class="card">
+<h3>READABILITY</h3>
+<p>
+Clean structures that remain easy to navigate.
+</p>
+</div>
+
+<div class="card">
+<h3>TACTICAL ATMOSPHERE</h3>
+<p>
+A consistent operational feeling across all systems.
+</p>
+</div>
+
+<div class="card">
+<h3>VISUAL DISCIPLINE</h3>
+<p>
+Controlled effects rather than chaotic design overload.
+</p>
+</div>
+
+</div>
+
+<p class="glow-text">
+The system expands carefully.
+</p>
+
+</div>
+
+<div class="section">
+
+<h2 class="section-title">
+🏛️ THE COMMAND CENTRE
+</h2>
+
+<p>
+One of the biggest recent developments was the activation of the Codex Command Centre.
+</p>
+
+<p>
+The Command Centre functions as an internal operations and development division.
+</p>
+
+<div class="list">
+
+<div class="card">
+<h3>SYSTEM TESTING</h3>
+<p>
+Experimental systems are tested before public deployment.
+</p>
+</div>
+
+<div class="card">
+<h3>MODULE PLANNING</h3>
+<p>
+Future infrastructure systems are planned and refined internally.
+</p>
+</div>
+
+<div class="card">
+<h3>COORDINATION</h3>
+<p>
+Operational development and strategic systems are managed centrally.
+</p>
+</div>
+
+<div class="card">
+<h3>DEVELOPMENT STAGING</h3>
+<p>
+New systems are prepared before integration into the main Codex environment.
+</p>
+</div>
+
+</div>
+
+<p style="margin-top:35px;">
+Most future systems will likely be tested there before reaching the main Codex environment.
+</p>
+
+</div>
+
+<div class="section">
+
+<h2 class="section-title">
+📡 THE PHILOSOPHY OF THE CODEX
+</h2>
+
+<p>
+The Codex was never intended to become “just another active club.”
+</p>
+
+<p>
+The long-term objective is creating:
+</p>
+
+<div class="list">
+
+<div class="card">
+<h3>IDENTITY</h3>
+<p>
+A recognizable atmosphere people immediately remember.
+</p>
+</div>
+
+<div class="card">
+<h3>STRUCTURE</h3>
+<p>
+A connected operational system instead of disconnected pages.
+</p>
+</div>
+
+<div class="card">
+<h3>COMMUNITY</h3>
+<p>
+A long-term environment built around consistency and culture.
+</p>
+</div>
+
+<div class="card">
+<h3>EVOLUTION</h3>
+<p>
+Infrastructure designed to continue expanding over time.
+</p>
+</div>
+
+</div>
+
+<p class="glow-text" style="margin-top:35px;">
+Not through spam.<br><br>
+Not through numbers alone.<br><br>
+Through atmosphere, structure, and identity.
+</p>
+
+</div>
+
+<div class="section">
+
+<h2 class="section-title">
+⚜️ FUTURE TRANSMISSIONS
+</h2>
+
+<p>
+Future entries of Inside the Codex may cover:
+</p>
+
+<div class="list">
+
+<div class="card">
+<h3>HIDDEN SYSTEMS</h3>
+<p>
+Unreleased infrastructure and inactive operational modules.
+</p>
+</div>
+
+<div class="card">
+<h3>SIDEBAR ARCHITECTURE</h3>
+<p>
+The layered systems behind the Codex interface.
+</p>
+</div>
+
+<div class="card">
+<h3>INFERNO CHAMPIONSHIP</h3>
+<p>
+An upcoming competitive operational event currently under development.
+</p>
+</div>
+
+<div class="card">
+<h3>PARTNERSHIP STRATEGY</h3>
+<p>
+How external collaborations may integrate into the Codex ecosystem.
+</p>
+</div>
+
+</div>
+
+<p class="glow-text">
+The system continues evolving.
+</p>
+
+</div>
+
+<div class="status-panel">
+
+<div class="status-line">
+<span>COMMAND CENTRE</span>
+<span>ACTIVE</span>
+</div>
+
+<div class="status-line">
+<span>INFRASTRUCTURE EXPANSION</span>
+<span>ACTIVE</span>
+</div>
+
+<div class="status-line">
+<span>UI EVOLUTION</span>
+<span>ACTIVE</span>
+</div>
+
+<div class="status-line">
+<span>OPERATIONAL DEVELOPMENT</span>
+<span>CONTINUING</span>
+</div>
+
+</div>
+
+<div class="footer">
+⚔️ END OF ENTRY #001 ⚔️
+</div>
+
+</div>
