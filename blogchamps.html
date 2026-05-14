@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Codex Blog Interface v2</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: #050b14;
+  color: #e6f1ff;
+  font-family: Inter, sans-serif;
+  overflow-x: hidden;
+}
+
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
+}
+
+h1 {
+  font-family: Orbitron;
+  text-align: center;
+  font-size: 32px;
+  text-shadow: 0 0 20px #4da3ff;
+}
+
+/* PANEL */
+.panel {
+  margin: 16px 0;
+  border-radius: 16px;
+  border: 1px solid rgba(77,163,255,0.18);
+  background: rgba(15,25,40,0.6);
+  overflow: hidden;
+  transition: 0.3s ease;
+  box-shadow: 0 0 18px rgba(0,0,0,0.35);
+}
+
+.panel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 26px rgba(77,163,255,0.25);
+}
+
+/* HEADER BAR */
+.panel-header {
+  padding: 14px 16px;
+  cursor: pointer;
+  background: linear-gradient(90deg,#0f2238,#183a5f);
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag {
+  font-size: 11px;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+
+/* CONTENT AREA */
+.panel-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease, padding 0.3s ease;
+  padding: 0 16px;
+}
+
+/* OPEN STATE */
+.panel.open .panel-content {
+  padding: 16px;
+  max-height: 1200px;
+}
+
+/* KEY CHIPS */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.chip {
+  font-size: 11px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(77,163,255,0.12);
+  border: 1px solid rgba(77,163,255,0.25);
+}
+
+/* DANGER TEXT */
+.danger {
+  color: #ffb3b3;
+  font-weight: 600;
+}
+
+/* DIVIDER */
+.divider {
+  height: 1px;
+  margin: 14px 0;
+  background: linear-gradient(90deg,transparent,#4da3ff,transparent);
+  opacity: 0.5;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="wrapper">
+
+<h1>Why Equal Positions Are More Dangerous Than They Look</h1>
+
+<!-- PANEL 1 -->
+<div class="panel" onclick="toggle(this)">
+  <div class="panel-header">
+    1. Equality Is Not Stability
+    <span class="tag">CORE IDEA</span>
+  </div>
+
+  <div class="panel-content">
+
+    <div class="chips">
+      <div class="chip">Imbalances</div>
+      <div class="chip">Static illusion</div>
+      <div class="chip">Collapse risk</div>
+    </div>
+
+    A position is called equal when neither side has a clear material or positional advantage.
+
+    <div class="divider"></div>
+
+    But chess is not a static game. It is a system of constantly shifting imbalances:
+
+    <div class="chips">
+      <div class="chip">Piece activity</div>
+      <div class="chip">King safety</div>
+      <div class="chip">Pawn structure</div>
+      <div class="chip">Space control</div>
+      <div class="chip">Initiative</div>
+    </div>
+
+    An “equal” position often means none of these factors has exploded or been uncovered yet.
+
+    <div class="divider"></div>
+
+    <div class="danger">
+      One inaccurate move is enough to collapse the balance completely.
+    </div>
+
+  </div>
+</div>
+
+<!-- PANEL 2 -->
+<div class="panel" onclick="toggle(this)">
+  <div class="panel-header">
+    2. The Hidden Energy in Equal Positions
+    <span class="tag">TACTICAL PRESSURE</span>
+  </div>
+
+  <div class="panel-content">
+
+    Equal positions are often the most tense positions on the board.
+
+    <div class="chips">
+      <div class="chip">Freedom = danger</div>
+      <div class="chip">Tempo becomes weapon</div>
+      <div class="chip">Small gains matter</div>
+    </div>
+
+    Because both players have freedom.
+
+    No one is forced into passive defence. No one is obviously losing.
+
+    <div class="divider"></div>
+
+    This creates a dangerous environment where:
+
+    <div class="chips">
+      <div class="chip">Tempo critical</div>
+      <div class="chip">Tactical shots appear</div>
+      <div class="chip">Pawn moves matter long-term</div>
+      <div class="chip">Micro-advantages snowball</div>
+    </div>
+
+    <div class="danger">
+      Every move is still a question — and wrong answers lose games.
+    </div>
+
+  </div>
+</div>
+
+<!-- PANEL 3 -->
+<div class="panel" onclick="toggle(this)">
+  <div class="panel-header">
+    3. Why Players Misjudge Equality
+    <span class="tag">PSYCHOLOGY</span>
+  </div>
+
+  <div class="panel-content">
+
+    Most players mentally relax when they see equality.
+
+    <div class="chips">
+      <div class="chip">False safety</div>
+      <div class="chip">Relaxation trap</div>
+      <div class="chip">Complacency</div>
+    </div>
+
+    “I’m fine now”  
+    “Nothing is happening”  
+    “I can just develop normally”
+
+    <div class="divider"></div>
+
+    <div class="danger">
+      Chess punishes relaxation, not just mistakes.
+    </div>
+
+  </div>
+</div>
+
+<!-- PANEL 4 -->
+<div class="panel" onclick="toggle(this)">
+  <div class="panel-header">
+    4. Equal Positions Favour the More Active Mind
+    <span class="tag">SKILL GAP</span>
+  </div>
+
+  <div class="panel-content">
+
+    When everything is balanced, no plan is given.
+
+    <div class="chips">
+      <div class="chip">Calculation</div>
+      <div class="chip">Initiative creation</div>
+      <div class="chip">Pattern awareness</div>
+    </div>
+
+    Success depends on:
+
+    <div class="chips">
+      <div class="chip">Calculation depth</div>
+      <div class="chip">Positional understanding</div>
+      <div class="chip">Threat awareness</div>
+      <div class="chip">Risk control</div>
+    </div>
+
+    <div class="danger">
+      Strong players don’t wait for imbalance — they manufacture it.
+    </div>
+
+  </div>
+</div>
+
+<!-- PANEL 5 -->
+<div class="panel" onclick="toggle(this)">
+  <div class="panel-header">
+    5. The Turning Point Principle
+    <span class="tag">TRANSITION</span>
+  </div>
+
+  <div class="panel-content">
+
+    Most equal positions don’t stay equal.
+
+    <div class="chips">
+      <div class="chip">Space gain</div>
+      <div class="chip">Blunder collapse</div>
+      <div class="chip">Forced imbalance</div>
+    </div>
+
+    <div class="danger">
+      Equality is not an endpoint. It is a transition phase.
+    </div>
+
+  </div>
+</div>
+
+<!-- PANEL 6 -->
+<div class="panel" onclick="toggle(this)">
+  <div class="panel-header">
+    6. Practical Mindset Shift
+    <span class="tag">EXECUTION</span>
+  </div>
+
+  <div class="panel-content">
+
+    Stop thinking “nothing is happening”
+
+    <div class="chips">
+      <div class="chip">Ask what changes</div>
+      <div class="chip">Value tempo</div>
+      <div class="chip">Scan tactics always</div>
+    </div>
+
+    <div class="danger">
+      Equal positions are never quiet — only unread.
+    </div>
+
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="panel" onclick="toggle(this)">
+  <div class="panel-header">
+    Conclusion
+    <span class="tag">FINAL STATE</span>
+  </div>
+
+  <div class="panel-content">
+
+    Equal positions are not peaceful. They are unresolved battles.
+
+    <div class="divider"></div>
+
+    The player who treats equality as stability will eventually be surprised.
+
+    The player who treats equality as tension will eventually take control.
+
+    <div class="divider"></div>
+
+    <div class="danger">
+      Sometimes danger doesn’t look like danger — it looks balanced.
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<script>
+function toggle(el){
+  el.classList.toggle("open");
+}
+
+/* PARTICLES */
+const c = document.getElementById("particles");
+const ctx = c.getContext("2d");
+
+c.width = innerWidth;
+c.height = innerHeight;
+
+let p = Array.from({length: 90}, () => ({
+  x: Math.random()*c.width,
+  y: Math.random()*c.height,
+  r: Math.random()*2,
+  d: Math.random()*1.2
+}));
+
+function draw(){
+  ctx.clearRect(0,0,c.width,c.height);
+  ctx.fillStyle = "rgba(77,163,255,0.5)";
+
+  p.forEach(pt=>{
+    ctx.beginPath();
+    ctx.arc(pt.x,pt.y,pt.r,0,Math.PI*2);
+    ctx.fill();
+
+    pt.y += pt.d;
+    if(pt.y > c.height){
+      pt.y = 0;
+      pt.x = Math.random()*c.width;
+    }
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+addEventListener("resize",()=>{
+  c.width = innerWidth;
+  c.height = innerHeight;
+});
+</script>
+
+</body>
+</html>
