@@ -358,10 +358,10 @@ body{
 /* content */
 
 .expand-content{
-
     max-height:0;
 
-    overflow:hidden;
+    overflow-y:auto;
+    overflow-x:hidden;
 
     transition:
     max-height 0.7s ease,
@@ -371,16 +371,38 @@ body{
 
     position:relative;
     z-index:2;
+
+    scrollbar-width:thin;
+    scrollbar-color:#00f0ff rgba(255,255,255,0.05);
+}
+
+/* custom scrollbar */
+
+.expand-content::-webkit-scrollbar{
+    width:8px;
+}
+
+.expand-content::-webkit-scrollbar-track{
+    background:rgba(255,255,255,0.04);
+    border-radius:999px;
+}
+
+.expand-content::-webkit-scrollbar-thumb{
+    background:
+    linear-gradient(
+    #00f0ff,
+    #ff00c8
+    );
+
+    border-radius:999px;
 }
 
 .expand-card.active .expand-content{
-
-    max-height:600px;
+    max-height:1200px;
 
     padding:
     0 28px 28px 28px;
 }
-
 .expand-content p{
 
     line-height:1.95;
@@ -705,7 +727,7 @@ Why Equal Positions Are More Dangerous Than They Look
 <p>
 In chess, “equal position” is one of the most misleading phrases you can encounter.
 On the surface, it sounds harmless. Material is balanced. No threats appear. Engines show 0.00.
-But experienced players know: equality is not safety, it is tension waiting for collapse.
+But experienced players know that equality is not safety, it is tension waiting for collapse.
 </p>
 
 </div>
@@ -728,13 +750,13 @@ But experienced players know: equality is not safety, it is tension waiting for 
 <div class="expand-content">
 
 <p>
-At first glance, an “equal” position looks harmless: material balances, pieces mirror each other, and the engine scoreboard reads even.
+At first glance, an “equal” position looks harmless, material balances, pieces mirror each other, and the engine scoreboard reads even.
 But chess is a dynamic battlefield, not a photograph.
 That calm can be an illusion.
 </p>
 
 <p>
-GM Daniel Naroditsky(RIP) reminds us you don’t need a sudden big blunder to lose — a quiet pawn break or a subtle reroute can change everything.
+GM Daniel Naroditsky(RIP) reminds us that you don’t need a sudden big blunder to lose, a quiet pawn break or a subtle reroute can change everything.
 </p>
 
 <div class="board-wrap">
@@ -802,7 +824,7 @@ Every move carried tactical consequences and dangerous forcing lines.
 <div class="danger-box">
 <div class="danger-title">ZERO COORDINATION</div>
 <div class="danger-desc">
-The defenders lost harmony and could no longer stabilize the position.
+The defenders lost harmony and could no longer stabilise the position.
 </div>
 </div>
 
@@ -810,13 +832,13 @@ The defenders lost harmony and could no longer stabilize the position.
 
 <p>
 Again:
-one move changed the state of the game.
+One move changed the state of the game.
 </p>
 
 <p>
 Bottom line:
-equal does not mean stable —
-it means tension before the end.
+equal does not mean stable,
+It means tension before the end.
 </p>
 
 <p>
@@ -834,11 +856,11 @@ Possible threats such as a hidden fork, a pin, or the slow activation of a piece
 Emanuel Lasker’s observation that
 <i>“the hardest game to win is a won game”</i>
 seemingly has its reverse:
-the hardest game to hold is a seemingly harmless one.
+The hardest game to hold is a seemingly harmless one.
 </p>
 
 <p>
-When both sides are “fine,” treat that fine as fragile —
+When both sides are “fine,” treat that fine as fragile,
 a transition phase before the inevitable.
 </p>
 
@@ -864,20 +886,20 @@ a transition phase before the inevitable.
 <div class="expand-content">
 
 <p>
-Equal positions are like fully charged batteries —
+Equal positions are like fully charged batteries,
 silent, but dangerous once someone mishandles them.
 </p>
 
 <p>
 Both sides still have options,
-so every tempo,
+So every tempo,
 every prophylactic move,
-and every pawn nudge matters.
+And every pawn nudge matters.
 </p>
 
 <p>
-Watch Magnus Carlsen:
-his superpower is converting boredom into pressure.
+Watch Magnus Carlsen,
+His superpower is converting boredom into pressure.
 One tiny reposition,
 one pawn nudged a single square forward,
 and suddenly the comfortable position feels uncomfortable.
@@ -887,7 +909,7 @@ and suddenly the comfortable position feels uncomfortable.
 Quiet prophylactic moves often win where fireworks fail.
 Reposition a knight,
 shore up a backward pawn,
-swap off a bad bishop —
+swap off a bad bishop,
 small improvements compound.
 </p>
 
@@ -929,13 +951,9 @@ That is the warning sign.
 </p>
 
 <p>
-Lasker’s method was attrition —
+Lasker’s method was attrition,
 keep poking until the opponent bleeds.
 </p>
-
-<div class="mind-warning">
-⚠ FALSE SENSE OF SECURITY DETECTED
-</div>
 
 <p>
 When both players relax,
@@ -947,7 +965,7 @@ Long “equal” endgames are fertile ground for time trouble and tiny inaccurac
 </p>
 
 <p>
-Don’t wait for your opponent to finish their plan —
+Don’t wait for your opponent to finish their plan,
 provoke them.
 </p>
 
@@ -988,10 +1006,10 @@ Time pressure and mental fuzz are allies.
 <div class="expand-content">
 
 <p>
-That “tiny” edge —
+That “tiny” edge,
 bishop pair versus bishop and knight,
 better pawn structure,
-slightly superior king safety —
+slightly superior king safety
 may be the only lever you have.
 </p>
 
@@ -1028,11 +1046,11 @@ but White’s bishops command long diagonals while Black has an awkward knight a
 <p>
 White nudges the c-pawn to c5,
 fixing Black’s structure,
-then improves the king’s position.
+Then improves the king’s position.
 </p>
 
 <p>
-No tactical fireworks —
+No tactical fireworks,
 just steady pressure slowly creating real targets and weaknesses.
 </p>
 
@@ -1062,7 +1080,7 @@ This is how small structural advantages become decisive.
 <div class="expand-content">
 
 <p>
-Top players don’t accept equality —
+Top players don’t accept equality,
 they create imbalance.
 </p>
 
@@ -1099,7 +1117,7 @@ Push the opponent into uncomfortable decisions.
 </div>
 
 <p>
-Each forces the opponent to choose —
+Each forces the opponent to choose,
 and every choice is an opportunity to create imbalance.
 </p>
 
@@ -1194,7 +1212,7 @@ Players who treat equality as safety lose quietly.<br>
 Players who treat it as tension take control early.<br><br>
 
 CONCLUSION:
-STABILITY WAS NEVER REAL —
+STABILITY WAS NEVER REAL,
 ONLY DELAYED DECISION.
 </div>
 
