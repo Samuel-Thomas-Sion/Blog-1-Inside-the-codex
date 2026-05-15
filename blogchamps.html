@@ -208,9 +208,215 @@ body{
     border:1px solid rgba(0,255,150,0.25);
     line-height:1.8;
 }
+    /* ================= EXPANDABLE SYSTEM ================= */
+
+.expand-zone{
+    margin-top:70px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.expand-card{
+    position:relative;
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(135deg,
+    rgba(15,20,35,0.95),
+    rgba(6,8,14,0.98));
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    transition:0.35s;
+}
+
+.expand-card:hover{
+    border-color:rgba(0,240,255,0.35);
+
+    box-shadow:
+    0 0 35px rgba(0,240,255,0.12);
+}
+
+/* animated edge */
+
+.expand-card::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(0,240,255,0.08),
+    rgba(255,0,200,0.08),
+    transparent 80%
+    );
+
+    transform:translateX(-100%);
+    transition:1.2s;
+}
+
+.expand-card:hover::before{
+    transform:translateX(100%);
+}
+
+/* HEADER */
+
+.expand-header{
+    padding:24px 28px;
+
+    cursor:pointer;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    position:relative;
+    z-index:2;
+}
+
+.expand-title{
+    font-family:Orbitron;
+    font-size:1rem;
+    letter-spacing:1px;
+
+    background:linear-gradient(90deg,#00f0ff,#ff00c8);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.expand-icon{
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(255,255,255,0.04);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    transition:0.35s;
+
+    font-size:1.4rem;
+}
+
+.expand-card.active .expand-icon{
+    transform:rotate(135deg) scale(1.08);
+
+    background:#00f0ff;
+    color:black;
+}
+
+/* CONTENT */
+
+.expand-content{
+    max-height:0;
+    overflow:hidden;
+
+    transition:
+    max-height 0.7s ease,
+    padding 0.5s ease;
+
+    padding:0 28px;
+
+    position:relative;
+    z-index:2;
+}
+
+.expand-card.active .expand-content{
+    max-height:600px;
+
+    padding:
+    0 28px 28px 28px;
+}
+
+.expand-content p{
+    line-height:1.95;
+    color:#d8e6ff;
+
+    margin-bottom:16px;
+}
+
+/* SCANLINES */
+
+.expand-content::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.015),
+    rgba(255,255,255,0.015) 1px,
+    transparent 1px,
+    transparent 3px
+    );
+
+    pointer-events:none;
+}
+
+/* mini tactical tags */
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+
+    margin-top:18px;
+}
+
+.tag{
+    padding:8px 12px;
+
+    border-radius:999px;
+
+    font-size:.75rem;
+
+    letter-spacing:1px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    transition:0.25s;
+}
+
+.tag:hover{
+    transform:translateY(-3px);
+
+    background:#00f0ff;
+    color:black;
+}
 
 </style>
 </head>
+    <script>
+
+const cards=document.querySelectorAll(".expand-card");
+
+cards.forEach(card=>{
+
+    card.querySelector(".expand-header")
+    .onclick=()=>{
+
+        card.classList.toggle("active");
+
+    };
+
+});
+
+</script>
 
 <body>
 
@@ -250,41 +456,96 @@ That is why equal positions feel quiet only to beginners. To stronger players, t
 </p>
 </div>
 
-<!-- MATRIX EXPANDED -->
-<div class="matrix">
+<!-- EXPANDABLE ANALYSIS SYSTEM -->
 
-<div class="block"><b>1. Equality Is Not Stability</b><br><br>
-The current evaluation is not forever. They may be equal but there are secret imbalances,moves that threathen the stability of the game,king safety. many people just count material and say it is equal but it is much more deeper than that.
+<div class="expand-zone">
+
+<div class="expand-card active">
+
+<div class="expand-header">
+<div class="expand-title">01 — Equality Is Not Stability</div>
+<div class="expand-icon">+</div>
 </div>
 
-<div class="block"><b>2. Hidden Energy in Equal Positions</b><br><br>
-When neither side is losing, both have freedom. That freedom increases danger.
-Every tempo matters. Every pawn push carries long-term consequences.
-The position becomes less about survival and more about precision under uncertainty.
-</div>
+<div class="expand-content">
 
-<div class="block"><b>3. The Psychological Trap</b><br><br>
-The biggest mistake is mental relaxation:
-“I’m equal, so I’m safe.”
-This assumption reduces calculation depth and awareness.
-Most losses in equal positions come from a single inattentive move, not from structural collapse.
-</div>
+<p>
+A position is called equal when neither side has a clear material or positional advantage.
+But chess is not static.
+</p>
 
-<div class="block"><b>4. Why Strong Players Dominate Equality</b><br><br>
-Strong players do not wait for imbalance — they create it.
-They understand that equal positions reward initiative, not passivity.
-They improve pieces, provoke weaknesses, and force decisions.
-</div>
+<p>
+Piece activity, pawn structure, initiative, king safety and space constantly shift beneath the surface.
+Equal positions often contain hidden instability waiting for one inaccurate move.
+</p>
 
-<div class="block"><b>5. The Turning Point Rule</b><br><br>
-No equal position survives unchanged.
-It either:
-- tilts through pressure,
-- breaks through tactics,
-- or shifts via intentional imbalance creation.
+<div class="tags">
+<div class="tag">Pressure</div>
+<div class="tag">Instability</div>
+<div class="tag">Imbalance</div>
 </div>
 
 </div>
+</div>
+
+<div class="expand-card">
+
+<div class="expand-header">
+<div class="expand-title">02 — Hidden Energy</div>
+<div class="expand-icon">+</div>
+</div>
+
+<div class="expand-content">
+
+<p>
+Equal positions are tense because both players still have freedom.
+No one is forced into defence.
+No one is clearly worse.
+</p>
+
+<p>
+That freedom creates danger:
+tempo matters more,
+small pawn moves become permanent,
+and tactical opportunities appear unexpectedly.
+</p>
+
+<div class="tags">
+<div class="tag">Tempo</div>
+<div class="tag">Tactics</div>
+<div class="tag">Initiative</div>
+</div>
+
+</div>
+</div>
+
+<div class="expand-card">
+
+<div class="expand-header">
+<div class="expand-title">03 — The Psychological Trap</div>
+<div class="expand-icon">+</div>
+</div>
+
+<div class="expand-content">
+
+<p>
+Players relax when they see equality.
+That mental shift lowers calculation depth and awareness.
+</p>
+
+<p>
+Many games are lost not from losing positions —
+but from one careless move inside an equal one.
+</p>
+
+<div class="tags">
+<div class="tag">Focus</div>
+<div class="tag">Calculation</div>
+<div class="tag">Awareness</div>
+</div>
+
+</div>
+
 
 <!-- STRIP -->
 <div class="strip">
