@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>CODEx READER v1.6 — Equal Positions</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -13,236 +14,75 @@
 
 body{
     margin:0;
-    font-family:Inter;
+    font-family:Inter,sans-serif;
+
     background:
     radial-gradient(circle at 20% 20%, rgba(0,255,255,0.08), transparent 35%),
     radial-gradient(circle at 80% 30%, rgba(255,0,150,0.07), transparent 40%),
     #05060a;
+
     color:#eaf2ff;
     overflow-x:hidden;
 }
 
-/* particles */
+/* animated particles */
+
 .p{
     position:fixed;
-    width:3px;height:3px;
+    width:3px;
+    height:3px;
+
     background:white;
     border-radius:50%;
+
     opacity:0.4;
+
     animation:float 14s linear infinite;
 }
 
 @keyframes float{
-    from{transform:translateY(100vh);}
-    to{transform:translateY(-10vh) translateX(40px);}
+
+    from{
+        transform:translateY(100vh);
+    }
+
+    to{
+        transform:translateY(-10vh) translateX(40px);
+    }
+
 }
 
 /* ================= HERO ================= */
 
 .hero{
+
     padding:70px;
+
     border-radius:28px;
+
     margin:40px auto;
+
     width:min(1100px,92%);
+
     position:relative;
+
     overflow:hidden;
+
     border:1px solid rgba(255,255,255,0.08);
-    background:linear-gradient(135deg,#0a0f1d,#05070d);
+
+    background:
+    linear-gradient(
+    135deg,
+    #0a0f1d,
+    #05070d
+    );
+
+    box-shadow:
+    0 0 60px rgba(0,255,255,0.08);
 }
 
 .hero::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(120deg,transparent,rgba(0,255,255,0.08),transparent);
-    animation:scan 7s linear infinite;
-}
 
-@keyframes scan{
-    from{transform:translateX(-100%);}
-    to{transform:translateX(100%);}
-}
-
-.hero h1{
-    font-family:Orbitron;
-    font-size:3rem;
-    margin:0;
-    background:linear-gradient(90deg,#00f0ff,#ff00c8,#ffe600,#00ff9d);
-    background-size:300%;
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:shift 7s linear infinite;
-}
-
-@keyframes shift{
-    0%{background-position:0%}
-    100%{background-position:300%}
-}
-
-.hero p{
-    margin-top:18px;
-    opacity:0.85;
-    line-height:1.8;
-    max-width:900px;
-}
-
-/* ================= SECTIONS ================= */
-
-.wrap{
-    width:min(1100px,92%);
-    margin:auto;
-}
-
-/* FLOW SYSTEM */
-.flow{
-    margin-top:60px;
-    padding:40px;
-    border-left:4px solid #00f0ff;
-    background:rgba(255,255,255,0.03);
-}
-
-.flow p{
-    line-height:1.9;
-    margin-bottom:18px;
-}
-
-/* MATRIX SYSTEM (EXPANDED) */
-.matrix{
-    margin-top:60px;
-    display:grid;
-    grid-template-columns:1fr;
-    gap:14px;
-}
-
-.block{
-    padding:22px;
-    border-radius:14px;
-    background:linear-gradient(135deg,#0c1426,#070a12);
-    border:1px solid rgba(255,255,255,0.06);
-    transition:0.25s;
-}
-
-.block:hover{
-    transform:scale(1.02);
-    border-color:#00f0ff;
-    box-shadow:0 0 20px rgba(0,255,255,0.15);
-}
-
-/* STRIP */
-.strip{
-    margin-top:60px;
-    padding:40px;
-    border-radius:18px;
-    background:linear-gradient(90deg,#ff004c,#ffb300,#ff004c);
-    color:black;
-    font-weight:700;
-}
-
-/* CARD SYSTEM (NEW UX TYPE) */
-.card-grid{
-    margin-top:60px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:14px;
-}
-
-.card{
-    padding:22px;
-    border-radius:16px;
-    background:rgba(255,255,255,0.03);
-    border:1px solid rgba(255,255,255,0.06);
-    transition:0.3s;
-    position:relative;
-    overflow:hidden;
-}
-
-.card::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(120deg,transparent,rgba(0,255,255,0.08),transparent);
-    transform:translateX(-100%);
-    transition:1s;
-}
-
-.card:hover::before{
-    transform:translateX(100%);
-}
-
-.card:hover{
-    transform:translateY(-6px) scale(1.03);
-    border-color:#ff00c8;
-}
-
-/* BUTTON UX SYSTEM */
-.btns{
-    margin-top:40px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-.btn{
-    padding:10px 14px;
-    border-radius:999px;
-    border:1px solid rgba(255,255,255,0.2);
-    background:rgba(255,255,255,0.04);
-    cursor:pointer;
-    transition:0.2s;
-}
-
-.btn:hover{
-    transform:translateY(-3px);
-    background:#00f0ff;
-    color:black;
-}
-
-/* TERMINAL */
-.terminal{
-    margin-top:70px;
-    background:black;
-    padding:28px;
-    border-radius:14px;
-    font-family:monospace;
-    color:#00ff9d;
-    border:1px solid rgba(0,255,150,0.25);
-    line-height:1.8;
-}
-    /* ================= EXPANDABLE SYSTEM ================= */
-
-.expand-zone{
-    margin-top:70px;
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-}
-
-.expand-card{
-    position:relative;
-    overflow:hidden;
-
-    border-radius:20px;
-
-    background:
-    linear-gradient(135deg,
-    rgba(15,20,35,0.95),
-    rgba(6,8,14,0.98));
-
-    border:1px solid rgba(255,255,255,0.08);
-
-    transition:0.35s;
-}
-
-.expand-card:hover{
-    border-color:rgba(0,240,255,0.35);
-
-    box-shadow:
-    0 0 35px rgba(0,240,255,0.12);
-}
-
-/* animated edge */
-
-.expand-card::before{
     content:"";
 
     position:absolute;
@@ -251,104 +91,108 @@ body{
     background:
     linear-gradient(
     120deg,
-    transparent 20%,
-    rgba(0,240,255,0.08),
-    rgba(255,0,200,0.08),
-    transparent 80%
+    transparent,
+    rgba(0,255,255,0.08),
+    transparent
     );
 
-    transform:translateX(-100%);
-    transition:1.2s;
+    animation:scan 7s linear infinite;
 }
 
-.expand-card:hover::before{
-    transform:translateX(100%);
+@keyframes scan{
+
+    from{
+        transform:translateX(-100%);
+    }
+
+    to{
+        transform:translateX(100%);
+    }
+
 }
 
-/* HEADER */
+.hero h1{
 
-.expand-header{
-    padding:24px 28px;
+    font-family:Orbitron,sans-serif;
 
-    cursor:pointer;
+    font-size:clamp(2.4rem,5vw,4.5rem);
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    margin:0;
 
-    position:relative;
-    z-index:2;
-}
+    line-height:1.1;
 
-.expand-title{
-    font-family:Orbitron;
-    font-size:1rem;
-    letter-spacing:1px;
+    background:
+    linear-gradient(
+    90deg,
+    #00f0ff,
+    #ff00c8,
+    #ffe600,
+    #00ff9d
+    );
 
-    background:linear-gradient(90deg,#00f0ff,#ff00c8);
+    background-size:300%;
+
     -webkit-background-clip:text;
+
     color:transparent;
+
+    animation:shift 7s linear infinite;
 }
 
-.expand-icon{
-    width:42px;
-    height:42px;
+@keyframes shift{
 
-    border-radius:50%;
+    0%{
+        background-position:0%;
+    }
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    100%{
+        background-position:300%;
+    }
 
-    background:rgba(255,255,255,0.04);
-
-    border:1px solid rgba(255,255,255,0.08);
-
-    transition:0.35s;
-
-    font-size:1.4rem;
 }
 
-.expand-card.active .expand-icon{
-    transform:rotate(135deg) scale(1.08);
+.hero p{
 
-    background:#00f0ff;
-    color:black;
+    margin-top:22px;
+
+    opacity:0.9;
+
+    line-height:1.9;
+
+    max-width:900px;
+
+    color:#d7e3ff;
 }
 
-/* CONTENT */
+/* ================= WRAP ================= */
 
-.expand-content{
-    max-height:0;
-    overflow:hidden;
+.wrap{
+    width:min(1100px,92%);
+    margin:auto;
+}
 
-    transition:
-    max-height 0.7s ease,
-    padding 0.5s ease;
+/* ================= FLOW ================= */
 
-    padding:0 28px;
+.flow{
+
+    margin-top:60px;
+
+    padding:40px;
+
+    border-left:4px solid #00f0ff;
+
+    background:
+    rgba(255,255,255,0.03);
+
+    border-radius:18px;
 
     position:relative;
-    z-index:2;
+
+    overflow:hidden;
 }
 
-.expand-card.active .expand-content{
-    max-height:600px;
+.flow::before{
 
-    padding:
-    0 28px 28px 28px;
-}
-
-.expand-content p{
-    line-height:1.95;
-    color:#d8e6ff;
-
-    margin-bottom:16px;
-}
-
-/* SCANLINES */
-
-.expand-content::after{
     content:"";
 
     position:absolute;
@@ -366,17 +210,222 @@ body{
     pointer-events:none;
 }
 
-/* mini tactical tags */
+.flow p{
+
+    line-height:1.95;
+
+    margin-bottom:18px;
+
+    position:relative;
+    z-index:2;
+}
+
+/* ================= EXPANDABLE SYSTEM ================= */
+
+.expand-zone{
+
+    margin-top:70px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:18px;
+}
+
+.expand-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(15,20,35,0.95),
+    rgba(6,8,14,0.98)
+    );
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    transition:0.35s;
+}
+
+.expand-card:hover{
+
+    border-color:rgba(0,240,255,0.35);
+
+    box-shadow:
+    0 0 35px rgba(0,240,255,0.12);
+}
+
+/* animated edge */
+
+.expand-card::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(0,240,255,0.08),
+    rgba(255,0,200,0.08),
+    transparent 80%
+    );
+
+    transform:translateX(-100%);
+
+    transition:1.2s;
+}
+
+.expand-card:hover::before{
+    transform:translateX(100%);
+}
+
+/* header */
+
+.expand-header{
+
+    padding:24px 28px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    position:relative;
+    z-index:2;
+}
+
+.expand-title{
+
+    font-family:Orbitron,sans-serif;
+
+    font-size:1rem;
+
+    letter-spacing:1px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #00f0ff,
+    #ff00c8
+    );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+}
+
+.expand-icon{
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(255,255,255,0.04);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    transition:0.35s;
+
+    font-size:1.4rem;
+}
+
+.expand-card.active .expand-icon{
+
+    transform:rotate(135deg) scale(1.08);
+
+    background:#00f0ff;
+
+    color:black;
+}
+
+/* content */
+
+.expand-content{
+
+    max-height:0;
+
+    overflow:hidden;
+
+    transition:
+    max-height 0.7s ease,
+    padding 0.5s ease;
+
+    padding:0 28px;
+
+    position:relative;
+    z-index:2;
+}
+
+.expand-card.active .expand-content{
+
+    max-height:600px;
+
+    padding:
+    0 28px 28px 28px;
+}
+
+.expand-content p{
+
+    line-height:1.95;
+
+    color:#d8e6ff;
+
+    margin-bottom:16px;
+}
+
+/* scanlines */
+
+.expand-content::after{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.015),
+    rgba(255,255,255,0.015) 1px,
+    transparent 1px,
+    transparent 3px
+    );
+
+    pointer-events:none;
+}
+
+/* tags */
 
 .tags{
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:10px;
 
     margin-top:18px;
 }
 
 .tag{
+
     padding:8px 12px;
 
     border-radius:999px;
@@ -393,72 +442,281 @@ body{
 }
 
 .tag:hover{
+
     transform:translateY(-3px);
 
     background:#00f0ff;
+
     color:black;
+}
+
+/* ================= STRIP ================= */
+
+.strip{
+
+    margin-top:60px;
+
+    padding:40px;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ff004c,
+    #ffb300,
+    #ff004c
+    );
+
+    color:black;
+
+    font-weight:700;
+
+    font-size:1.2rem;
+
+    text-align:center;
+
+    box-shadow:
+    0 0 40px rgba(255,100,0,0.25);
+}
+
+/* ================= CARD GRID ================= */
+
+.card-grid{
+
+    margin-top:60px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+
+    gap:18px;
+}
+
+.card{
+
+    padding:24px;
+
+    border-radius:18px;
+
+    background:
+    rgba(255,255,255,0.03);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    transition:0.35s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+    120deg,
+    transparent,
+    rgba(0,255,255,0.08),
+    transparent
+    );
+
+    transform:translateX(-100%);
+
+    transition:1s;
+}
+
+.card:hover::before{
+    transform:translateX(100%);
+}
+
+.card:hover{
+
+    transform:
+    translateY(-6px)
+    scale(1.03);
+
+    border-color:#ff00c8;
+
+    box-shadow:
+    0 0 25px rgba(255,0,200,0.14);
+}
+
+.card b{
+
+    color:#00f0ff;
+
+    font-family:Orbitron,sans-serif;
+}
+
+/* ================= BUTTON UX ================= */
+
+.btns{
+
+    margin-top:50px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+}
+
+.btn{
+
+    padding:12px 18px;
+
+    border-radius:999px;
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    background:rgba(255,255,255,0.04);
+
+    cursor:pointer;
+
+    transition:0.25s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.btn::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+    120deg,
+    transparent,
+    rgba(0,255,255,0.2),
+    transparent
+    );
+
+    transform:translateX(-100%);
+
+    transition:0.8s;
+}
+
+.btn:hover::before{
+    transform:translateX(100%);
+}
+
+.btn:hover{
+
+    transform:translateY(-4px);
+
+    background:#00f0ff;
+
+    color:black;
+
+    box-shadow:
+    0 0 18px rgba(0,255,255,0.4);
+}
+
+/* ================= TERMINAL ================= */
+
+.terminal{
+
+    margin-top:70px;
+
+    background:black;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    font-family:monospace;
+
+    color:#00ff9d;
+
+    border:1px solid rgba(0,255,150,0.25);
+
+    line-height:1.9;
+
+    box-shadow:
+    0 0 35px rgba(0,255,150,0.08);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+.hero{
+    padding:40px;
+}
+
+.flow{
+    padding:28px;
+}
+
+.expand-header{
+    padding:20px;
+}
+
+.strip{
+    padding:28px;
+}
+
 }
 
 </style>
 </head>
-    <script>
-
-const cards=document.querySelectorAll(".expand-card");
-
-cards.forEach(card=>{
-
-    card.querySelector(".expand-header")
-    .onclick=()=>{
-
-        card.classList.toggle("active");
-
-    };
-
-});
-
-</script>
 
 <body>
 
+<!-- PARTICLES -->
+
 <script>
+
 for(let i=0;i<35;i++){
+
     let d=document.createElement("div");
+
     d.className="p";
+
     d.style.left=Math.random()*100+"vw";
+
     d.style.animationDuration=(8+Math.random()*10)+"s";
+
     document.body.appendChild(d);
+
 }
+
 </script>
 
 <!-- HERO -->
+
 <div class="hero">
-<h1>Why Equal Positions Are More Dangerous Than They Look</h1>
+
+<h1>
+Why Equal Positions Are More Dangerous Than They Look
+</h1>
+
 <p>
 In chess, “equal position” is one of the most misleading phrases you can encounter.
 On the surface, it sounds harmless. Material is balanced. No threats appear. Engines show 0.00.
 But experienced players know: equality is not safety — it is tension waiting for collapse.
 </p>
+
 </div>
 
 <div class="wrap">
 
-<!-- FLOW EXPANDED -->
-<div class="flow">
-<p>
-Equal does not mean stable. It only means unresolved forces are temporarily balanced.
-</p>
-<p>
-Chess is not a static scoreboard — it is a live system of pressure:
-small imbalances in king safety, pawn structure, space, and initiative constantly evolve.
-</p>
-<p>
-That is why equal positions feel quiet only to beginners. To stronger players, they feel like a loaded board.
-</p>
-</div>
-
 <!-- EXPANDABLE ANALYSIS SYSTEM -->
 
 <div class="expand-zone">
+
+<!-- MODULE 01 -->
 
 <div class="expand-card active">
 
@@ -487,6 +745,8 @@ Equal positions often contain hidden instability waiting for one inaccurate move
 
 </div>
 </div>
+
+<!-- MODULE 02 -->
 
 <div class="expand-card">
 
@@ -519,6 +779,8 @@ and tactical opportunities appear unexpectedly.
 </div>
 </div>
 
+<!-- MODULE 03 -->
+
 <div class="expand-card">
 
 <div class="expand-header">
@@ -545,14 +807,94 @@ but from one careless move inside an equal one.
 </div>
 
 </div>
+</div>
+
+<!-- MODULE 04 -->
+
+<div class="expand-card">
+
+<div class="expand-header">
+<div class="expand-title">04 — Why Strong Players Dominate Equality</div>
+<div class="expand-icon">+</div>
+</div>
+
+<div class="expand-content">
+
+<p>
+Strong players do not wait for imbalance —
+they create it.
+</p>
+
+<p>
+They improve piece activity, provoke weaknesses,
+force uncomfortable decisions and slowly increase pressure
+until the position stops being equal.
+</p>
+
+<p>
+Equal positions reward initiative more than passivity.
+The player asking difficult questions usually controls the direction of the game.
+</p>
+
+<div class="tags">
+<div class="tag">Initiative</div>
+<div class="tag">Pressure</div>
+<div class="tag">Control</div>
+<div class="tag">Activity</div>
+</div>
+
+</div>
+</div>
+
+<!-- MODULE 05 -->
+
+<div class="expand-card">
+
+<div class="expand-header">
+<div class="expand-title">05 — The Turning Point Rule</div>
+<div class="expand-icon">+</div>
+</div>
+
+<div class="expand-content">
+
+<p>
+Most equal positions do not stay equal for long.
+</p>
+
+<p>
+Eventually one side gains space,
+a tactical mistake appears,
+or someone intentionally creates imbalance to avoid passive play.
+</p>
+
+<p>
+Equality is not an ending state.
+It is usually a transition phase before the real fight begins.
+</p>
+
+<div class="tags">
+<div class="tag">Transition</div>
+<div class="tag">Tension</div>
+<div class="tag">Breakthrough</div>
+<div class="tag">Dynamics</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<!-- END expand-zone -->
+
 
 
 <!-- STRIP -->
+
 <div class="strip">
 Equality is not a destination. It is a transition phase under pressure.
 </div>
 
-<!-- CARD SYSTEM -->
+<!-- CARD GRID -->
+
 <div class="card-grid">
 
 <div class="card">
@@ -578,27 +920,60 @@ Whoever dictates forcing moves starts shaping the entire game.
 </div>
 
 <!-- BUTTON UX -->
+
 <div class="btns">
+
 <div class="btn">Scan Weak Squares</div>
+
 <div class="btn">Evaluate King Safety</div>
+
 <div class="btn">Track Initiative Flow</div>
+
 <div class="btn">Force Imbalance</div>
+
 <div class="btn">Check Tactical Lines</div>
+
 </div>
 
 <!-- TERMINAL -->
+
 <div class="terminal">
+
 >> FINAL ANALYSIS MODULE ONLINE<br><br>
 
-Equal positions are not peaceful. They are unstable systems disguised as balance.<br><br>
+Equal positions are not peaceful.
+They are unstable systems disguised as balance.<br><br>
 
 Players who treat equality as safety lose quietly.<br>
 Players who treat it as tension take control early.<br><br>
 
-CONCLUSION: STABILITY WAS NEVER REAL — ONLY DELAYED DECISION.
+CONCLUSION:
+STABILITY WAS NEVER REAL —
+ONLY DELAYED DECISION.
+
 </div>
 
 </div>
+
+<!-- EXPAND SCRIPT -->
+
+<script>
+
+const cards = document.querySelectorAll(".expand-card");
+
+cards.forEach(card => {
+
+    const header = card.querySelector(".expand-header");
+
+    header.addEventListener("click", () => {
+
+        card.classList.toggle("active");
+
+    });
+
+});
+
+</script>
 
 </body>
 </html>
