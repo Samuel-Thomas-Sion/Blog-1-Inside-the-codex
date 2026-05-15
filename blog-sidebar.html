@@ -1,0 +1,456 @@
+# CODEx Blog Sidebar — Futuristic Reader Panel
+
+```html
+<!-- ========== CODEX BLOG SIDEBAR ========== -->
+
+<style>
+
+.codex-sidebar{
+    width:320px;
+    background:
+    linear-gradient(180deg,
+    rgba(8,12,20,0.96),
+    rgba(4,6,12,0.98));
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:24px;
+
+    padding:24px;
+
+    color:#eaf2ff;
+
+    font-family:Inter,sans-serif;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 0 40px rgba(0,255,255,0.08),
+    inset 0 0 30px rgba(0,255,255,0.03);
+}
+
+.codex-sidebar::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.02) 1px,
+    transparent 1px,
+    transparent 4px
+    );
+
+    pointer-events:none;
+}
+
+/* HEADER */
+
+.sidebar-top{
+    position:relative;
+    z-index:2;
+}
+
+.sidebar-tag{
+    display:inline-block;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:.72rem;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    border:1px solid rgba(0,255,255,0.25);
+
+    background:rgba(0,255,255,0.06);
+
+    color:#00f0ff;
+
+    margin-bottom:18px;
+}
+
+.sidebar-title{
+    font-family:Orbitron,sans-serif;
+
+    font-size:2rem;
+
+    line-height:1.05;
+
+    margin-bottom:18px;
+
+    background:
+    linear-gradient(90deg,
+    #00f0ff,
+    #ff00c8,
+    #ffe600,
+    #00ff9d);
+
+    background-size:300%;
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+    animation:shift 8s linear infinite;
+}
+
+@keyframes shift{
+    0%{background-position:0%}
+    100%{background-position:300%}
+}
+
+.sidebar-desc{
+    color:#9cb4d9;
+
+    line-height:1.8;
+
+    font-size:.95rem;
+}
+
+/* STATUS */
+
+.status-box{
+    margin-top:28px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,0.03);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.status-box::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+    120deg,
+    transparent,
+    rgba(0,255,255,0.08),
+    transparent);
+
+    transform:translateX(-100%);
+
+    animation:scan 5s linear infinite;
+}
+
+@keyframes scan{
+    to{
+        transform:translateX(100%);
+    }
+}
+
+.status-line{
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+    font-size:.9rem;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.status-green{
+    color:#00ff9d;
+
+    text-shadow:0 0 12px rgba(0,255,157,0.7);
+}
+
+/* MODULES */
+
+.module-stack{
+    margin-top:28px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+}
+
+.module-btn{
+    position:relative;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(135deg,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.02));
+
+    border:1px solid rgba(255,255,255,0.07);
+
+    overflow:hidden;
+
+    transition:0.35s;
+
+    cursor:pointer;
+}
+
+.module-btn:hover{
+    transform:translateY(-4px) scale(1.02);
+
+    border-color:#00f0ff;
+
+    box-shadow:0 0 25px rgba(0,255,255,0.12);
+}
+
+.module-btn::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.06),
+    transparent);
+
+    transform:translateX(-100%);
+
+    transition:1s;
+}
+
+.module-btn:hover::before{
+    transform:translateX(100%);
+}
+
+.module-number{
+    font-family:Orbitron;
+
+    font-size:.75rem;
+
+    letter-spacing:2px;
+
+    color:#00f0ff;
+
+    margin-bottom:8px;
+}
+
+.module-name{
+    font-weight:700;
+
+    line-height:1.4;
+}
+
+/* QUOTE */
+
+.quote-box{
+    margin-top:30px;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(135deg,
+    rgba(255,0,200,0.12),
+    rgba(0,255,255,0.05));
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    position:relative;
+}
+
+.quote-box::before{
+    content:"\201C";
+
+    position:absolute;
+
+    top:-10px;
+    left:16px;
+
+    font-size:4rem;
+
+    color:rgba(255,255,255,0.08);
+}
+
+.quote-text{
+    font-style:italic;
+
+    line-height:1.8;
+
+    color:#d8e6ff;
+}
+
+/* FOOTER */
+
+.sidebar-footer{
+    margin-top:28px;
+
+    text-align:center;
+
+    font-size:.75rem;
+
+    letter-spacing:3px;
+
+    color:#7e95bb;
+
+    text-transform:uppercase;
+}
+
+
+
+/* FLOATING TOP BUTTON */
+
+.codex-top-btn{
+    position:fixed;
+
+    right:20px;
+    bottom:20px;
+
+    width:58px;
+    height:58px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    linear-gradient(135deg,
+    #00f0ff,
+    #ff00c8);
+
+    color:white;
+
+    font-size:1.4rem;
+
+    cursor:pointer;
+
+    z-index:9999;
+
+    box-shadow:
+    0 0 30px rgba(0,255,255,0.35);
+
+    animation:pulse 2.5s infinite;
+
+    transition:0.3s;
+}
+
+.codex-top-btn:hover{
+    transform:translateY(-6px) scale(1.08) rotate(8deg);
+}
+
+@keyframes pulse{
+    0%{box-shadow:0 0 0 rgba(0,255,255,0.3)}
+    50%{box-shadow:0 0 35px rgba(0,255,255,0.7)}
+    100%{box-shadow:0 0 0 rgba(0,255,255,0.3)}
+}
+
+</style>
+
+<div class="codex-sidebar">
+
+<div class="sidebar-top">
+
+<div class="sidebar-tag">
+CODEx Reader v1
+</div>
+
+<div class="sidebar-title">
+CODEX<br>
+READER<br>
+INTERACTIVE<br>
+BLOGS
+</div>
+
+<div class="sidebar-desc">
+Interactive chess blogs built with advanced UI, immersive reading systems, tactical visuals and dynamic storytelling. Every post inside CODEx Reader is designed to feel less like an article — and more like a live analysis interface.
+</div>
+
+</div>
+
+<div class="status-box">
+
+<div class="status-line">
+<span>READER STATUS</span>
+<span class="status-green">ONLINE</span>
+</div>
+
+<div class="status-line">
+<span>UI MODE</span>
+<span class="status-green">INTERACTIVE</span>
+</div>
+
+<div class="status-line">
+<span>SYSTEM TYPE</span>
+<span class="status-green">CODEx</span>
+</div>
+
+</div>
+
+<div class="module-stack">
+
+<div class="module-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<div class="module-number">SYSTEM TOOL</div>
+<div class="module-name">Return To Top</div>
+</div>
+
+<div class="module-btn">
+<div class="module-number">FEATURE</div>
+<div class="module-name">Interactive Reading Experience</div>
+</div>
+
+<div class="module-btn">
+<div class="module-number">FEATURE</div>
+<div class="module-name">Dynamic Tactical UI</div>
+</div>
+
+<div class="module-btn">
+<div class="module-number">FEATURE</div>
+<div class="module-name">Animated Chess Analysis Systems</div>
+</div>
+
+<div class="module-btn">
+<div class="module-number">FEATURE</div>
+<div class="module-name">Immersive Blog Presentation</div>
+</div>
+
+</div>
+
+<div class="quote-box">
+<div class="quote-text">
+Chess is not only about moves on the board. It is also about pressure, atmosphere, psychology and tension — CODEx Reader turns those invisible ideas into an experience.
+</div>
+</div>
+
+<div class="sidebar-footer">
+CODEx READER • INTERACTIVE BLOG SYSTEM
+</div>
+
+</div>
+
+<div class="codex-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+↑
+</div>
+
+<!-- ========== END SIDEBAR ========== -->
+```
