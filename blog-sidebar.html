@@ -1,12 +1,88 @@
-# CODEx Blog Sidebar — Futuristic Reader Panel
-
-```html
 <!-- ========== CODEX BLOG SIDEBAR ========== -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
+/* ================= ROOT PAGE FIX ================= */
+
+html{
+    background:#000;
+    min-height:100%;
+}
+
+body{
+    margin:0;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+
+    overflow-x:hidden;
+
+    padding:25px 0;
+
+    font-family:Inter,sans-serif;
+
+    background:
+    radial-gradient(circle at 20% 20%, rgba(0,255,255,0.08), transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(255,0,150,0.08), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255,200,0,0.05), transparent 40%),
+    #000;
+}
+
+/* animated grid */
+
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+    background-size:40px 40px;
+
+    opacity:.35;
+
+    animation:gridMove 16s linear infinite;
+
+    pointer-events:none;
+
+    z-index:-1;
+}
+
+@keyframes gridMove{
+    from{
+        transform:translateY(0px);
+    }
+    to{
+        transform:translateY(40px);
+    }
+}
+
+/* wrapper */
+
+.sidebar-wrapper{
+    width:min(420px,95%);
+}
+
+/* ================= SIDEBAR ================= */
+
 .codex-sidebar{
-    width:320px;
+    width:100%;
+
     background:
     linear-gradient(180deg,
     rgba(8,12,20,0.96),
@@ -20,15 +96,34 @@
 
     color:#eaf2ff;
 
-    font-family:Inter,sans-serif;
-
     position:relative;
 
     overflow:hidden;
 
+    box-sizing:border-box;
+
     box-shadow:
     0 0 40px rgba(0,255,255,0.08),
+    0 0 80px rgba(255,0,200,0.06),
     inset 0 0 30px rgba(0,255,255,0.03);
+
+    animation:floatPanel 6s ease-in-out infinite;
+}
+
+@keyframes floatPanel{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
 }
 
 .codex-sidebar::before{
@@ -76,6 +171,9 @@
     color:#00f0ff;
 
     margin-bottom:18px;
+
+    box-shadow:
+    0 0 18px rgba(0,255,255,0.12);
 }
 
 .sidebar-title{
@@ -216,7 +314,9 @@
 
     border-color:#00f0ff;
 
-    box-shadow:0 0 25px rgba(0,255,255,0.12);
+    box-shadow:
+    0 0 25px rgba(0,255,255,0.12),
+    0 0 50px rgba(255,0,200,0.08);
 }
 
 .module-btn::before{
@@ -276,10 +376,12 @@
     border:1px solid rgba(255,255,255,0.08);
 
     position:relative;
+
+    overflow:hidden;
 }
 
 .quote-box::before{
-    content:"\201C";
+    content:"“";
 
     position:absolute;
 
@@ -297,6 +399,9 @@
     line-height:1.8;
 
     color:#d8e6ff;
+
+    position:relative;
+    z-index:2;
 }
 
 /* FOOTER */
@@ -314,8 +419,6 @@
 
     text-transform:uppercase;
 }
-
-
 
 /* FLOATING TOP BUTTON */
 
@@ -360,12 +463,43 @@
 }
 
 @keyframes pulse{
-    0%{box-shadow:0 0 0 rgba(0,255,255,0.3)}
-    50%{box-shadow:0 0 35px rgba(0,255,255,0.7)}
-    100%{box-shadow:0 0 0 rgba(0,255,255,0.3)}
+    0%{
+        box-shadow:0 0 0 rgba(0,255,255,0.3)
+    }
+
+    50%{
+        box-shadow:0 0 35px rgba(0,255,255,0.7)
+    }
+
+    100%{
+        box-shadow:0 0 0 rgba(0,255,255,0.3)
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+body{
+    padding:12px;
+}
+
+.codex-sidebar{
+    border-radius:18px;
+}
+
+.sidebar-title{
+    font-size:1.7rem;
+}
+
 }
 
 </style>
+</head>
+
+<body>
+
+<div class="sidebar-wrapper">
 
 <div class="codex-sidebar">
 
@@ -437,9 +571,11 @@ Interactive chess blogs built with advanced UI, immersive reading systems, tacti
 </div>
 
 <div class="quote-box">
+
 <div class="quote-text">
 Chess is not only about moves on the board. It is also about pressure, atmosphere, psychology and tension — CODEx Reader turns those invisible ideas into an experience.
 </div>
+
 </div>
 
 <div class="sidebar-footer">
@@ -448,9 +584,14 @@ CODEx READER • INTERACTIVE BLOG SYSTEM
 
 </div>
 
-<div class="codex-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+</div>
+
+<div class="codex-top-btn"
+onclick="window.scrollTo({top:0,behavior:'smooth'})">
 ↑
 </div>
 
+</body>
+</html>
+
 <!-- ========== END SIDEBAR ========== -->
-```
