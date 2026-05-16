@@ -1,0 +1,343 @@
+export default function PhantomCodexStudiosLaunch() {
+  return (
+    <div className="min-h-screen bg-black text-white overflow-x-hidden selection:bg-orange-500/40">
+      <style>{`
+        @keyframes pulseGlow {
+          0%,100% { opacity: 0.6; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        @keyframes scanMove {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(300%); }
+        }
+
+        @keyframes gridShift {
+          0% { background-position: 0 0; }
+          100% { background-position: 100px 100px; }
+        }
+
+        @keyframes fadeRise {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0px);
+          }
+        }
+
+        .grid-bg {
+          background-image:
+            linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+          background-size: 50px 50px;
+          animation: gridShift 12s linear infinite;
+        }
+
+        .glass {
+          backdrop-filter: blur(18px);
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .orange-glow {
+          box-shadow:
+            0 0 25px rgba(255,120,0,0.35),
+            0 0 60px rgba(255,120,0,0.15);
+        }
+
+        .fade-rise {
+          animation: fadeRise 1s ease forwards;
+        }
+
+        .scan-line {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+
+        .scan-line::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 120px;
+          background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(255,120,0,0.15),
+            transparent
+          );
+          animation: scanMove 5s linear infinite;
+        }
+      `}</style>
+
+      <div className="fixed inset-0 grid-bg opacity-40" />
+
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none">
+        <div className="absolute top-20 left-20 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse" />
+      </div>
+
+      <section className="relative min-h-screen flex items-center justify-center px-6">
+        <div className="scan-line" />
+
+        <div className="max-w-6xl w-full text-center relative z-10 fade-rise">
+          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-300 text-sm tracking-[0.3em] uppercase mb-8">
+            Phantom Codex Studios
+          </div>
+
+          <h1 className="text-6xl md:text-8xl font-black tracking-tight leading-none mb-8">
+            WHERE CHESS
+            <br />
+            COMMUNITIES
+            <br />
+            <span className="text-orange-400">BECOME SYSTEMS</span>
+          </h1>
+
+          <p className="max-w-3xl mx-auto text-zinc-300 text-lg md:text-2xl leading-relaxed mb-12">
+            Interactive sidebars. Cinematic blogs. Strategic announcements.
+            Digital identity architecture engineered for clubs and individuals.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-5">
+            <a
+              href="https://www.chess.com/club/protectors-of-the-codex"
+              target="_blank"
+              className="px-8 py-4 rounded-2xl bg-orange-500 text-black font-bold hover:scale-105 transition-all duration-300 orange-glow"
+            >
+              VIEW CLUB SYSTEM
+            </a>
+
+            <a
+              href="https://www.chess.com/blog/Codex-reader"
+              target="_blank"
+              className="px-8 py-4 rounded-2xl border border-white/15 glass hover:border-orange-500/50 hover:scale-105 transition-all duration-300"
+            >
+              VIEW BLOG ARCHITECTURE
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative px-6 py-28">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16">
+            <p className="text-orange-400 uppercase tracking-[0.35em] text-sm mb-4">
+              About The Studio
+            </p>
+
+            <h2 className="text-5xl md:text-6xl font-black mb-8 leading-tight">
+              Not Templates.
+              <br />
+              Systems.
+            </h2>
+
+            <p className="text-zinc-300 max-w-4xl text-xl leading-relaxed">
+              Phantom Codex Studios was created to transform ordinary chess
+              communities into immersive digital ecosystems. We engineer
+              interfaces, visual identity systems, cinematic blogs, and
+              interactive engagement architecture designed to create presence,
+              immersion, and memorability.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+            {[
+              {
+                title: 'Interactive Sidebars',
+                desc: 'Custom tactical UI systems with animated modules, glow architecture, scan pulse effects, tournament integration, and immersive layouts.',
+              },
+              {
+                title: 'Cinematic Blogs',
+                desc: 'Interactive reading systems with expandable modules, integrated chess presentation, dynamic layouts, and elite visual storytelling.',
+              },
+              {
+                title: 'Strategic Announcements',
+                desc: 'High-impact communication systems engineered to command attention and strengthen community identity.',
+              },
+              {
+                title: 'Identity Architecture',
+                desc: 'Full visual and structural branding systems for clubs and individuals seeking a recognizable digital presence.',
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="glass rounded-3xl p-8 hover:-translate-y-2 transition-all duration-500 hover:border-orange-500/30 relative overflow-hidden group"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/0 via-orange-500/0 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl border border-orange-500/30 bg-orange-500/10 flex items-center justify-center mb-6 text-orange-400 font-black text-xl">
+                    0{index + 1}
+                  </div>
+
+                  <h3 className="text-2xl font-bold mb-5">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-zinc-400 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative px-6 py-28">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <p className="text-orange-400 uppercase tracking-[0.35em] text-sm mb-4">
+              Proof Of Concept
+            </p>
+
+            <h2 className="text-5xl font-black mb-8 leading-tight">
+              Already
+              <br />
+              Deployed.
+            </h2>
+
+            <p className="text-zinc-300 text-xl leading-relaxed mb-10">
+              Phantom Codex Studios was not created as an idea.
+              It was built through active deployment inside real chess
+              communities and interactive content ecosystems.
+            </p>
+
+            <div className="space-y-6">
+              <div className="glass rounded-3xl p-6 border border-orange-500/20">
+                <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
+                  <h3 className="text-2xl font-bold">
+                    Protectors of the Codex
+                  </h3>
+
+                  <a
+                    href="https://www.chess.com/club/protectors-of-the-codex"
+                    target="_blank"
+                    className="text-orange-400 hover:text-orange-300 transition-colors"
+                  >
+                    OPEN ↗
+                  </a>
+                </div>
+
+                <p className="text-zinc-400 leading-relaxed">
+                  Live deployment featuring immersive club systems, tournament
+                  architecture, tactical identity design, and interactive
+                  engagement systems.
+                </p>
+              </div>
+
+              <div className="glass rounded-3xl p-6 border border-orange-500/20">
+                <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
+                  <h3 className="text-2xl font-bold">
+                    Codex Reader
+                  </h3>
+
+                  <a
+                    href="https://www.chess.com/blog/Codex-reader"
+                    target="_blank"
+                    className="text-orange-400 hover:text-orange-300 transition-colors"
+                  >
+                    OPEN ↗
+                  </a>
+                </div>
+
+                <p className="text-zinc-400 leading-relaxed">
+                  Interactive blog architecture showcasing cinematic layout
+                  systems, expandable analysis modules, and advanced visual
+                  presentation.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="glass rounded-[2rem] p-10 orange-glow border border-orange-500/20 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-400 to-transparent" />
+
+              <div className="mb-8">
+                <div className="text-zinc-500 uppercase tracking-[0.25em] text-xs mb-3">
+                  System Status
+                </div>
+
+                <div className="flex items-center gap-3 text-orange-400 text-xl font-bold">
+                  <div className="w-3 h-3 rounded-full bg-orange-400 animate-pulse" />
+                  PHANTOM NETWORK ACTIVE
+                </div>
+              </div>
+
+              <div className="space-y-6 text-zinc-300">
+                <div className="flex justify-between border-b border-white/10 pb-4">
+                  <span>Interactive Systems</span>
+                  <span className="text-orange-400">ONLINE</span>
+                </div>
+
+                <div className="flex justify-between border-b border-white/10 pb-4">
+                  <span>Codex Architecture</span>
+                  <span className="text-orange-400">DEPLOYED</span>
+                </div>
+
+                <div className="flex justify-between border-b border-white/10 pb-4">
+                  <span>Blog Systems</span>
+                  <span className="text-orange-400">EXPANDING</span>
+                </div>
+
+                <div className="flex justify-between border-b border-white/10 pb-4">
+                  <span>Studio Evolution</span>
+                  <span className="text-orange-400">ACTIVE</span>
+                </div>
+              </div>
+
+              <div className="mt-10 p-6 rounded-2xl bg-black/40 border border-white/10 text-zinc-400 leading-relaxed">
+                “The next generation of chess communities will not be static.
+                They will be interactive.”
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative px-6 py-32">
+        <div className="max-w-5xl mx-auto text-center">
+          <p className="text-orange-400 uppercase tracking-[0.35em] text-sm mb-6">
+            Final Transmission
+          </p>
+
+          <h2 className="text-5xl md:text-7xl font-black leading-tight mb-10">
+            The Era Of
+            <br />
+            Static Clubs
+            <br />
+            Is Ending.
+          </h2>
+
+          <p className="text-zinc-300 text-xl leading-relaxed max-w-3xl mx-auto mb-14">
+            Phantom Codex Studios is building the future of interactive chess
+            community systems, one deployment at a time.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <a
+              href="https://www.chess.com/club/protectors-of-the-codex"
+              target="_blank"
+              className="px-10 py-5 rounded-2xl bg-orange-500 text-black font-black tracking-wide hover:scale-105 transition-all duration-300 orange-glow"
+            >
+              ENTER THE CODEX
+            </a>
+
+            <a
+              href="https://www.chess.com/blog/Codex-reader"
+              target="_blank"
+              className="px-10 py-5 rounded-2xl border border-white/15 glass hover:border-orange-500/50 hover:scale-105 transition-all duration-300"
+            >
+              VIEW SYSTEMS
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
