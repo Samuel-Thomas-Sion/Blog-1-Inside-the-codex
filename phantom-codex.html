@@ -1,80 +1,14 @@
 export default function PhantomCodexStudiosLaunch() {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden selection:bg-orange-500/40">
-      <style>{`
-        @keyframes pulseGlow {
-          0%,100% { opacity: 0.6; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.05); }
-        }
+      
 
-        @keyframes scanMove {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(300%); }
-        }
-
-        @keyframes gridShift {
-          0% { background-position: 0 0; }
-          100% { background-position: 100px 100px; }
-        }
-
-        @keyframes fadeRise {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0px);
-          }
-        }
-
-        .grid-bg {
-          background-image:
-            linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-          background-size: 50px 50px;
-          animation: gridShift 12s linear infinite;
-        }
-
-        .glass {
-          backdrop-filter: blur(18px);
-          background: rgba(255,255,255,0.03);
-          border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .orange-glow {
-          box-shadow:
-            0 0 25px rgba(255,120,0,0.35),
-            0 0 60px rgba(255,120,0,0.15);
-        }
-
-        .fade-rise {
-          animation: fadeRise 1s ease forwards;
-        }
-
-        .scan-line {
-          position: absolute;
-          inset: 0;
-          overflow: hidden;
-        }
-
-        .scan-line::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          right: 0;
-          height: 120px;
-          background: linear-gradient(
-            to bottom,
-            transparent,
-            rgba(255,120,0,0.15),
-            transparent
-          );
-          animation: scanMove 5s linear infinite;
-        }
-      `}</style>
-
-      <div className="fixed inset-0 grid-bg opacity-40" />
+      <div className="fixed inset-0 opacity-40"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
 
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-20 left-20 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl animate-pulse" />
@@ -85,7 +19,13 @@ export default function PhantomCodexStudiosLaunch() {
         <div className="scan-line" />
 
         <div className="max-w-6xl w-full text-center relative z-10 fade-rise">
-          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-300 text-sm tracking-[0.3em] uppercase mb-8">
+          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full text-sm uppercase mb-8"
+            style={{
+              border: '1px solid rgba(249,115,22,0.3)',
+              background: 'rgba(249,115,22,0.1)',
+              color: '#fdba74',
+              letterSpacing: '0.3em'
+            }}>
             Phantom Codex Studios
           </div>
 
@@ -106,7 +46,10 @@ export default function PhantomCodexStudiosLaunch() {
             <a
               href="https://www.chess.com/club/protectors-of-the-codex"
               target="_blank"
-              className="px-8 py-4 rounded-2xl bg-orange-500 text-black font-bold hover:scale-105 transition-all duration-300 orange-glow"
+              className="px-8 py-4 rounded-2xl bg-orange-500 text-black font-bold hover:scale-105 transition-all duration-300"
+              style={{
+                boxShadow: '0 0 25px rgba(255,120,0,0.35), 0 0 60px rgba(255,120,0,0.15)'
+              }}
             >
               VIEW CLUB SYSTEM
             </a>
@@ -165,7 +108,12 @@ export default function PhantomCodexStudiosLaunch() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="glass rounded-3xl p-8 hover:-translate-y-2 transition-all duration-500 hover:border-orange-500/30 relative overflow-hidden group"
+                className="rounded-3xl p-8 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group"
+                style={{
+                  backdropFilter: 'blur(18px)',
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(255,255,255,0.08)'
+                }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-500/0 via-orange-500/0 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -208,7 +156,12 @@ export default function PhantomCodexStudiosLaunch() {
             </p>
 
             <div className="space-y-6">
-              <div className="glass rounded-3xl p-6 border border-orange-500/20">
+              <div className="rounded-3xl p-6"
+                style={{
+                  backdropFilter: 'blur(18px)',
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(249,115,22,0.2)'
+                }}>
                 <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
                   <h3 className="text-2xl font-bold">
                     Protectors of the Codex
@@ -230,7 +183,12 @@ export default function PhantomCodexStudiosLaunch() {
                 </p>
               </div>
 
-              <div className="glass rounded-3xl p-6 border border-orange-500/20">
+              <div className="rounded-3xl p-6"
+                style={{
+                  backdropFilter: 'blur(18px)',
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(249,115,22,0.2)'
+                }}>
                 <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
                   <h3 className="text-2xl font-bold">
                     Codex Reader
@@ -255,7 +213,13 @@ export default function PhantomCodexStudiosLaunch() {
           </div>
 
           <div className="relative">
-            <div className="glass rounded-[2rem] p-10 orange-glow border border-orange-500/20 relative overflow-hidden">
+            <div className="rounded-[2rem] p-10 relative overflow-hidden"
+              style={{
+                backdropFilter: 'blur(18px)',
+                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(249,115,22,0.2)',
+                boxShadow: '0 0 25px rgba(255,120,0,0.35), 0 0 60px rgba(255,120,0,0.15)'
+              }}>
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-400 to-transparent" />
 
               <div className="mb-8">
@@ -323,7 +287,10 @@ export default function PhantomCodexStudiosLaunch() {
             <a
               href="https://www.chess.com/club/protectors-of-the-codex"
               target="_blank"
-              className="px-10 py-5 rounded-2xl bg-orange-500 text-black font-black tracking-wide hover:scale-105 transition-all duration-300 orange-glow"
+              className="px-10 py-5 rounded-2xl bg-orange-500 text-black font-black tracking-wide hover:scale-105 transition-all duration-300"
+              style={{
+                boxShadow: '0 0 25px rgba(255,120,0,0.35), 0 0 60px rgba(255,120,0,0.15)'
+              }}
             >
               ENTER THE CODEX
             </a>
